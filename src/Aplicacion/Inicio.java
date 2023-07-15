@@ -1,15 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Aplicacion;
+
+import javafx.scene.paint.Color;
+
+
+
 
 /**
  *
  * @author lara pc
  */
 public class Inicio extends javax.swing.JFrame {
+    
+    int xMouse,yMouse;
 
     /**
      * Creates new form Inicio
@@ -28,23 +31,217 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        imagenTorre = new javax.swing.JLabel();
+        Header = new javax.swing.JPanel();
+        Exit = new javax.swing.JPanel();
+        exitTxt = new javax.swing.JLabel();
+        Titulo = new javax.swing.JLabel();
+        dFalla = new javax.swing.JLabel();
+        kmfalla = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        km1 = new javax.swing.JLabel();
+        Textokm = new javax.swing.JTextField();
+        km2 = new javax.swing.JLabel();
+        textoTorres = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        textCalcular = new javax.swing.JLabel();
+        calcularPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setUndecorated(true);
+        setResizable(false);
 
         Background.setBackground(new java.awt.Color(255, 255, 255));
-        Background.setToolTipText("ffgfgfg");
+        Background.setToolTipText("");
+        Background.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BackgroundMouseEntered(evt);
+            }
+        });
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/torre de transmision.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        Background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 390, 520));
+        imagenTorre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/torre de transmision.png"))); // NOI18N
+        imagenTorre.setText("jLabel1");
+        Background.add(imagenTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 390, 510));
 
-        jLabel2.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Rango De Inspección");
-        Background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 80));
+        Header.setBackground(new java.awt.Color(255, 255, 255));
+        Header.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                HeaderMouseDragged(evt);
+            }
+        });
+        Header.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                HeaderMousePressed(evt);
+            }
+        });
+
+        Exit.setBackground(new java.awt.Color(255, 255, 255));
+        Exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ExitMouseExited(evt);
+            }
+        });
+
+        exitTxt.setBackground(new java.awt.Color(255, 255, 255));
+        exitTxt.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        exitTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitTxt.setText("x");
+        exitTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitTxtMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitTxtMouseEntered(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ExitLayout = new javax.swing.GroupLayout(Exit);
+        Exit.setLayout(ExitLayout);
+        ExitLayout.setHorizontalGroup(
+            ExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(exitTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        ExitLayout.setVerticalGroup(
+            ExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ExitLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(exitTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
+        Header.setLayout(HeaderLayout);
+        HeaderLayout.setHorizontalGroup(
+            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderLayout.createSequentialGroup()
+                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 806, Short.MAX_VALUE))
+        );
+        HeaderLayout.setVerticalGroup(
+            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        Background.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 30));
+
+        Titulo.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
+        Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Titulo.setText("Rango De Inspección");
+        Background.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 400, 80));
+
+        dFalla.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        dFalla.setText("DISTANCIA DE FALLA");
+        dFalla.setToolTipText("");
+        Background.add(dFalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 230, 40));
+
+        kmfalla.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        kmfalla.setForeground(new java.awt.Color(153, 153, 153));
+        kmfalla.setText("Ingrese los Kilometros de linea");
+        kmfalla.setBorder(null);
+        kmfalla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                kmfallaMousePressed(evt);
+            }
+        });
+        kmfalla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kmfallaActionPerformed(evt);
+            }
+        });
+        Background.add(kmfalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 260, 30));
+        Background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 280, 40));
+
+        km1.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        km1.setText("LARGO DE LA LINEA [Km]");
+        Background.add(km1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 230, 40));
+
+        Textokm.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        Textokm.setForeground(new java.awt.Color(153, 153, 153));
+        Textokm.setText("Ingrese los Kilometros de linea");
+        Textokm.setBorder(null);
+        Textokm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TextokmMousePressed(evt);
+            }
+        });
+        Textokm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextokmActionPerformed(evt);
+            }
+        });
+        Background.add(Textokm, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 290, 30));
+
+        km2.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        km2.setText("NUMERO DE TORRES");
+        Background.add(km2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 230, 40));
+
+        textoTorres.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
+        textoTorres.setForeground(new java.awt.Color(153, 153, 153));
+        textoTorres.setText("Ingrese el numero total de torres que posee la linea");
+        textoTorres.setBorder(null);
+        textoTorres.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                textoTorresMousePressed(evt);
+            }
+        });
+        textoTorres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoTorresActionPerformed(evt);
+            }
+        });
+        Background.add(textoTorres, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 280, 30));
+        Background.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 280, 40));
+        Background.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 280, 40));
+
+        textCalcular.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        textCalcular.setForeground(new java.awt.Color(255, 255, 255));
+        textCalcular.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textCalcular.setText("CALCULAR");
+        textCalcular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textCalcularMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                textCalcularMouseEntered(evt);
+            }
+        });
+        Background.add(textCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 100, 30));
+
+        calcularPanel.setBackground(new java.awt.Color(0, 51, 51));
+        calcularPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout calcularPanelLayout = new javax.swing.GroupLayout(calcularPanel);
+        calcularPanel.setLayout(calcularPanelLayout);
+        calcularPanelLayout.setHorizontalGroup(
+            calcularPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        calcularPanelLayout.setVerticalGroup(
+            calcularPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
+        Background.add(calcularPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 30));
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+
+        resultado.setColumns(20);
+        resultado.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        resultado.setRows(5);
+        jScrollPane1.setViewportView(resultado);
+
+        Background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 350, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,6 +256,127 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kmfallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kmfallaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kmfallaActionPerformed
+
+    private void TextokmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextokmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextokmActionPerformed
+
+    private void textoTorresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoTorresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoTorresActionPerformed
+
+    private void HeaderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HeaderMousePressed
+      
+        xMouse= evt.getX();
+        yMouse=evt.getY();
+    }//GEN-LAST:event_HeaderMousePressed
+
+    private void HeaderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HeaderMouseDragged
+        int x=evt.getXOnScreen();
+       int y= evt.getYOnScreen();
+       this.setLocation(x - xMouse,y -  yMouse);
+    }//GEN-LAST:event_HeaderMouseDragged
+
+    private void exitTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseClicked
+        System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_exitTxtMouseClicked
+
+    private void BackgroundMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackgroundMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BackgroundMouseEntered
+
+    private void ExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseEntered
+        Exit.setBackground(java.awt.Color.red);
+    }//GEN-LAST:event_ExitMouseEntered
+
+    private void ExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseExited
+        Exit.setBackground(java.awt.Color.white);
+    }//GEN-LAST:event_ExitMouseExited
+
+    private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseEntered
+    exitTxt.setBackground(java.awt.Color.red);        // TODO add your handling code here:
+    }//GEN-LAST:event_exitTxtMouseEntered
+
+    private void textCalcularMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textCalcularMouseEntered
+       textCalcular.setBackground(java.awt.Color.red);
+    }//GEN-LAST:event_textCalcularMouseEntered
+
+    private void TextokmMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TextokmMousePressed
+       if(Textokm.getText().equals("Ingrese los Kilometros de linea")){
+            Textokm.setText("");
+            Textokm.setForeground(java.awt.Color.black);
+               }
+       if (textoTorres.getText().isEmpty()) {           
+            textoTorres.setText("Ingrese el numero total de torres que posee la linea");
+            textoTorres.setForeground(java.awt.Color.gray);
+       }
+       if(kmfalla.getText().isEmpty()){
+            kmfalla.setText("Ingrese los Kilometros de linea");
+            kmfalla.setForeground(java.awt.Color.gray);
+               
+       }
+       
+    }//GEN-LAST:event_TextokmMousePressed
+
+    private void textoTorresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoTorresMousePressed
+       if (textoTorres.getText().equals("Ingrese el numero total de torres que posee la linea")) {           
+            textoTorres.setText("");
+            textoTorres.setForeground(java.awt.Color.black);
+       }
+       if(kmfalla.getText().isEmpty()){
+            kmfalla.setText("Ingrese los Kilometros de linea");
+            kmfalla.setForeground(java.awt.Color.gray);
+               
+       }
+       if(Textokm.getText().isEmpty()){
+            Textokm.setText("Ingrese los Kilometros de linea");
+            Textokm.setForeground(java.awt.Color.gray);
+               }
+    }//GEN-LAST:event_textoTorresMousePressed
+
+    private void kmfallaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kmfallaMousePressed
+     if(kmfalla.getText().equals("Ingrese los Kilometros de linea")){
+            kmfalla.setText("");
+            kmfalla.setForeground(java.awt.Color.black);
+    }       
+    
+        if(Textokm.getText().isEmpty()){
+            Textokm.setText("Ingrese los Kilometros de linea");
+            Textokm.setForeground(java.awt.Color.gray);
+               }
+       if (textoTorres.getText().isEmpty()) {           
+            textoTorres.setText("Ingrese el numero total de torres que posee la linea");
+            textoTorres.setForeground(java.awt.Color.gray);
+       }
+      
+    }//GEN-LAST:event_kmfallaMousePressed
+
+    private void textCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textCalcularMouseClicked
+        
+         
+         float dl,df,nt;
+         int torre,rm,ra;
+        df=Float.parseFloat(kmfalla.getText());
+        dl=Float.parseFloat(Textokm.getText());
+        nt=Float.parseFloat( textoTorres.getText());
+               torre=Math.round((nt*df)/dl);
+               rm=torre-10;
+               ra=torre+10;
+               if(ra>nt){
+               ra=Math.round(nt);
+               }
+                  
+               if (rm<0){
+                   rm=0;
+               }
+            resultado.setText( "Torre:"+torre+"\n Rango de Inspeccion:  "+rm+"-"+ra );  
+        
+        
+    }//GEN-LAST:event_textCalcularMouseClicked
 
     /**
      * @param args the command line arguments
@@ -97,7 +415,23 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel Exit;
+    private javax.swing.JPanel Header;
+    private javax.swing.JTextField Textokm;
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JPanel calcularPanel;
+    private javax.swing.JLabel dFalla;
+    private javax.swing.JLabel exitTxt;
+    private javax.swing.JLabel imagenTorre;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel km1;
+    private javax.swing.JLabel km2;
+    private javax.swing.JTextField kmfalla;
+    private javax.swing.JTextArea resultado;
+    private javax.swing.JLabel textCalcular;
+    private javax.swing.JTextField textoTorres;
     // End of variables declaration//GEN-END:variables
 }
